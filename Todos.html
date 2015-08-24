@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<meta charset="UTF-8">
+<head>
+	<link rel="stylesheet" href="css/todo.css">
+	<title>Todo</title>
+</head>
+<body>
+	<!--EMMET-->
+	<div id="app" ng-app="app">
+		<header>
+			<h1>Todos</h1>
+		</header>
+		<section ng-controller='appControl'>
+			<ul class="todos">
+				<li ng-repeat='todo in todos' ng-bind="todo"></li>
+			</ul>
+			<input id="new_todo" type="text" placeholder="请输入您的代办项"></input>
+		</section>
+		<footer>
+			design by Ben
+		</footer>
+	</div>
+
+	<script src="libs/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller('appControl',['$scope',function($scope){
+			var modellist=[];
+			modellist.push('Todo1');
+			modellist.push('Todo2');
+			modellist.push('Todo3');
+			$scope.todos = modellist;
+		}])
+	</script>
+
+	<script src="Javascript/Function.js"></script>
+
+</body>
+</html>

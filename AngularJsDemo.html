@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AngularJsDemo</title>
+	<style>
+	.hide{display: none;}
+	</style>
+</head>
+<body>
+	<div ng-app="demo">
+		<div ng-controller="ProductCtrl">
+			<div ng-repeat="product in products">
+				<h1 ng-bind='product.name'></h1>
+				<p ng-bind='product.price'></p>
+				<p ng-bind='product.description'></p>
+
+				<input type="button" name='' value='编辑' ng-click='editHandle()' />
+				
+
+				<div class='hide'>
+					<h1 ng-bind='product.name'></h1>
+					<input type="text" ng-model="product.price">
+					<input type="text" ng-model="product.description">
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="libs/angular.js"></script>
+	<script>
+		var app = angular.module('demo',[]);
+
+		app.controller('ProductCtrl',['$scope',function($scope){
+			var model = {
+				name:'Html&Js',
+				price:99,
+				description:'Javascript Craft'
+			}
+
+			var model2 = {
+				name:'Html&Js',
+				price:98,
+				description:'Javascript Craft'
+			}	
+
+			$scope.products = [model,model2];
+			$scope.editHandle=function(){
+				angular.element(document.querySelector('div.hide')).removeClass('hide');
+			}
+		}]);
+	</script>
+</body>
+</html>

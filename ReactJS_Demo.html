@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ReactJs_Demo</title>
+</head>
+<body>
+
+	
+	<script src="libs/react.js"></script>
+	<script src="libs/JSXTransformer.js"></script>
+	<script type='text/jsx'>
+		var Product = React.createClass({
+			render:function(){
+				return <div>Hello, ReactJs</div>
+			}
+		});
+
+		React.render(<Product />,document.body);
+	</script>
+</body>
+</html>
