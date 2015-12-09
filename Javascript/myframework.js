@@ -1,31 +1,36 @@
-module.exports = function (o){
+var util = {
+	merge:function(a,b){
+		if(typeof b === 'object'){
+			for(var i in b){
+				a[i] = b[i];
+			}
+		}
+		return a;
+	}
+}
 
-    var returnObj= function(name){
+var myClass = function (o){
+
+    var parent= function(name){
     	if(typeof this['initialize'] === 'function'){
     		this.initialize.apply(this,arguments);
     	}
     };
 
-    if(o){
-		for(var name in o){
-			returnObj.prototype[name]=o[name];
-		}
+    var child = function(){}
+    util.merge(parent.prototype,o);
 
+    var extend = function(arg){
+    	child = function(){};
+		child.prototype = new this();
+		util.merge(child.prototype,arg);
+		child.extend = extend
+		return child;
 	}
-	returnObj.extend = function(arg){
-		var returnChildObj = function(){}
+	
+	parent.extend = extend ;
 
-		returnChildObj.prototype = new returnObj();
-
-		for(var method in arg){
-			returnChildObj.prototype[method] = arg[method];
-		}
-
-		returnChildObj.prototype.__super__ = returnObj.prototype;
-
-		return returnChildObj;
-
-	}
-
-	return returnObj;
+	return parent;
 }
+
+module.exports = myClass;

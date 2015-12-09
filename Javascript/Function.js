@@ -8,7 +8,7 @@ var $ = function(selector){
 	el.show = function(){
 		this.style.display='block';
 	}
-	return el;
+	return el;g
 }
 */
 

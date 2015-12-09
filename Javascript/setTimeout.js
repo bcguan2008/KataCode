@@ -1,16 +1,13 @@
 for(var i = 0; i<10;i++){
 
-	/*setTimeout(function(){console.log(i)},200)
+	setTimeout(function(){console.log(i)},200)
 
 	var foo = function(){
 		var h = i;
 	}
 
-	foo();*/
+	foo();
 
-	setTimeout((function(name){
-		console.log(name);
-	})(i),200*i);
 
 /*
 	(function(){

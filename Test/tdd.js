@@ -20,7 +20,7 @@ describe('要有自己的框架',function(){
 		var jobs = new Person();
 
 		// 知识点链接创造力
-		jobs.should.be.have.properties(['sayHello','show']);
+		jobs.should.have.properties(['sayHello','show']);
 	});
 
 
@@ -46,12 +46,29 @@ describe('要有自己的框架',function(){
 		});
 
 		var Man = Person.extend({
+			run:function(){}
+		});
+
+		var Engineer = Person.extend({
 			work:function(){}
 		});
 
-		var jobs = new Man();
+		var CTO = Engineer.extend({
+			makePolicy:function(){}
+		});
 
-		jobs.should.have.properties(['sayHello','work']);
+		var man = new Man();
+		var jobs = new Engineer();
+		var james= new CTO();
+		
 
+		jobs.should.have.properties(['work','sayHello'])
+		jobs.should.not.have.properties(['makePolicy']);
+		jobs.should.not.have.properties(['run']);
+
+		james.should.have.properties(['sayHello','work','makePolicy']);
+		man.should.have.properties(['sayHello','run']);
+		man.should.not.have.properties(['work']);
+		man.should.not.have.properties(['makePolicy']);
 	})
 });

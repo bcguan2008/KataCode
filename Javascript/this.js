@@ -29,8 +29,6 @@ var proxy = function(){
 }
 
 $('#btn').bind('click',myCompany.brand);
-
-
 ===============
 
 var jobs = {
