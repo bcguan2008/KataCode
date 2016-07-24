@@ -24,14 +24,21 @@ var Class = function(args){
     merge(returnVal.prototype,args);
 
     returnVal.extend = function(childArgs){
-        var templateFun =function(){
-        };
-        templateFun.prototype = this.prototype ;
+        
         var child = function(){
         };
-        
+
+        /**
+         * 继承父类的方法，并不污染父类＋不执行父类构造函数
+         */
+        var templateFun =function(){};
+        templateFun.prototype = this.prototype ;
+        child.prototype = new templateFun();
         child.prototype.constructor = child;
         
+        /**
+         * 自己extend的属性，也merge进去
+         */
         merge(child.prototype,childArgs);
 
         return child;

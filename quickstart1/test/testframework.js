@@ -39,13 +39,11 @@ describe('My Framework',function(){
     it('Should be extended',function(){
         var Person = new Class({
             sayHello:function(){
-
             }
         });
 
         var Engineer = Person.extend({
             coding:function(){
-
             }
         });
 
