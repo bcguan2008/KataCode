@@ -1,0 +1,23 @@
+{
+  "name": "katacode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha quickstart1/test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcguan2008/KataCode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcguan2008/KataCode/issues"
+  },
+  "homepage": "https://github.com/bcguan2008/KataCode#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}
