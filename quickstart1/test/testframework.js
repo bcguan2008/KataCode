@@ -15,6 +15,12 @@ describe('My Framework',function(){
     it('Should have method',function(){
         var Person = new Class({
             sayHello:function(){
+            },
+            helloWorld:function(){
+
+            },
+            render:function(){
+
             }
         });
 
@@ -24,15 +30,17 @@ describe('My Framework',function(){
 
     it('Should have constructor',function(){
         var Person = new Class({
-            initialize:function(name){
+            initialize:function(name,value){
                 this.name = name;
+                this.value = value;
             }
         });
 
-        var jobs = new Person('jobs');
-        var gates = new Person('gates');
+        var jobs = new Person('jobs','12');
+        var gates = new Person('gates','24');
 
         jobs.name.should.equal('jobs');
+        jobs.value.should.equal('12');
         gates.name.should.equal('gates');
     });
 

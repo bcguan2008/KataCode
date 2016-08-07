@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha quickstart1/test/"
+    "test": "mocha angular-quickstart/test/"
   },
   "repository": {
     "type": "git",
