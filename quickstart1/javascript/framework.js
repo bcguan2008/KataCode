@@ -6,32 +6,44 @@ var merge = function(obj,args){
     for(var i in args){
         obj[i] = args[i];
     }
-    return obj;
 }
 
-
-var myClass = function(args){
+var Class = function(args){
     
-    var returnFun = function(){
-        if(args['initialize']){
-            args['initialize'].apply(this,arguments);
-        }    
-    };
-    //returnFun.prototype = args;
-    merge(returnFun.prototype,args);
+    var CONSTRUCTORKEY = "initialize";
 
-    returnFun.extend = function (argsChild){
-        var child = function(){};
+    var returnVal = function(){
+        if(typeof args[CONSTRUCTORKEY] ==='function'){
+            return args[CONSTRUCTORKEY].apply(this,arguments);
+        }
+    };
+
+    /**
+     * 提取merge方法
+     */
+    merge(returnVal.prototype,args);
+
+    returnVal.extend = function(childArgs){
         
-        var tempFun = function (){};
-        tempFun.prototype = this.prototype;
-        child.prototype = new tempFun();
+        var child = function(){
+        };
+
+        /**
+         * 继承父类的方法，并不污染父类＋不执行父类构造函数
+         */
+        var templateFun =function(){};
+        templateFun.prototype = this.prototype ;
+        child.prototype = new templateFun();
         child.prototype.constructor = child;
-        merge(child.prototype,argsChild);
+        
+        /**
+         * 自己extend的属性，也merge进去
+         */
+        merge(child.prototype,childArgs);
 
         return child;
     }
 
-    return returnFun;
+    return returnVal;
 }
-module.exports = myClass;
+module.exports = Class;
