@@ -17,7 +17,7 @@ describe('Angular 类库',function(){
         });
 
         it('app.factory 链式调用',function(){
-            app.should.be.equal(app.factory());
+            app.should.be.equal(app.factory('test',function(){}));
         })
 
         it('app 通过factory注入对象，invoke调用实现',function(){
