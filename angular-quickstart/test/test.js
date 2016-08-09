@@ -16,11 +16,11 @@ describe('Angular 类库',function(){
             app.injector.should.be.a('object');
         });
 
-        it('angular factory 链式调用',function(){
-            app.should.be.equal(app.factory());
+        it('app.factory 链式调用',function(){
+            app.should.be.equal(app.factory('test',function(){}));
         })
 
-        it('angular.module 通过factory注入对象，invoke调用实现',function(){
+        it('app 通过factory注入对象，invoke调用实现',function(){
             app.factory('baseVal',function(){
                 return {
                     a:2,
@@ -47,7 +47,7 @@ describe('Angular 类库',function(){
 
             invoke.should.be.true;
         });
-        
+
     });
 
 })
