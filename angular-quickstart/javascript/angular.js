@@ -1,45 +1,37 @@
-var angular = function(){
+var angular = function(){}
 
+
+function CreateInjector(cache){
+    this.cache = cache ; 
 }
-function extractArgs(fn) { 
-    //angular 这里还加了注释、箭头函数的处理
+
+function extractArgs(fn) { //angular 这里还加了注释、箭头函数的处理
     var args = fn.toString().match(/^[^\(]*\(\s*([^\)]*)\)/m);
     return args[1].split(',');
 }
 
-var CreateInjector = function(cache){
-    this.cache = cache ;
-}
-
 CreateInjector.prototype = {
     invoke:function(fn,self){
-        var self = this, argsString , args ; 
-
-        argsString = extractArgs(fn);
-        args = [];
-        argsString.forEach(function(val){
-            args.push(self.cache[val]);
-        })
-        
-        return fn.apply(self,args);
+        var args= [], argsString =[] , that = this;
+        args = extractArgs(fn);
+        args.forEach(function(val){
+            if(val){
+                argsString.push(that.cache[val]);
+            }
+        });
+        return fn.apply(self,argsString);
     }
 }
-
-CreateInjector.constructor = CreateInjector;
 
 angular.module = function(){
     var modules = {};
-    var injector = new CreateInjector(modules);
-
     return {
-        injector:injector,
-        factory:function(name,fn){
-            if(name && fn){
-                modules[name] = this.injector.invoke(fn) ;
-            }
+        injector: new CreateInjector(modules),
+        factory:function(name,factoryFn){
+            this.injector.cache[name] = this.injector.invoke(factoryFn);
             return this;
         }
     }
-} 
+}
 
 module.exports = angular ;

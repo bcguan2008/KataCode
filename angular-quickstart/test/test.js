@@ -44,7 +44,7 @@ describe('Angular 类库',function(){
             })
             invoke.should.be.true;
         })
-
+        
         it('app.factory 链式调用',function(){
             app.factory('baseVal',function(){
                 return {
@@ -72,7 +72,6 @@ describe('Angular 类库',function(){
 
             invoke.should.be.true;
         })
-
     });
 
 })
